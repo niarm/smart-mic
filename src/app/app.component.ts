@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { ElectronService } from './providers/electron.service';
-import { TranslateService } from '@ngx-translate/core';
-import { AppConfig } from './app.config';
+import {Component} from '@angular/core';
+import {ElectronService} from './providers/electron.service';
+import {TranslateService} from '@ngx-translate/core';
+import {AppConfig} from './app.config';
+import {ArduinoService} from './providers/arduino.service';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,9 @@ import { AppConfig } from './app.config';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(public electronService: ElectronService,
-    private translate: TranslateService) {
+  constructor (public electronService: ElectronService,
+               private translate: TranslateService,
+               public arduinoService: ArduinoService) {
 
     translate.setDefaultLang('en');
     console.log('AppConfig', AppConfig);
@@ -22,5 +24,7 @@ export class AppComponent {
     } else {
       console.log('Mode web');
     }
+
+    this.arduinoService.initBoard();
   }
 }

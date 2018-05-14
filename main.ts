@@ -1,6 +1,7 @@
 import { app, BrowserWindow, screen } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
+import rebuild from 'electron-rebuild';
 
 let win, serve;
 const args = process.argv.slice(1);
@@ -11,6 +12,16 @@ try {
 } catch {
   console.log('asar');
 }
+
+/* rebuild to solve serialport-nodeversion-problem. Better solution? */
+rebuild({
+  buildPath: __dirname,
+  electronVersion: '2.0.0'
+})
+  .then(() => console.log('Rebuild Successful'))
+  .catch((e) => {
+    console.log('Building modules didnt work!');
+  });
 
 function createWindow() {
 

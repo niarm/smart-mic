@@ -7,6 +7,22 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script>
+    var Readable = require("stream").Readable;
+    var util = require("util");
+    util.inherits(MyStream, Readable);
+    function MyStream(opt) {
+      Readable.call(this, opt);
+    }
+    MyStream.prototype._read = function() {};
+    // hook in our stream
+    process.__defineGetter__("stdin", function() {
+      if (process.__stdin) return process.__stdin;
+      process.__stdin = new MyStream();
+      return process.__stdin;
+    });
+    console.log("--- ELECTRON-JOHNNY-FIVE FIX DONE ---");
+  </script>
 </head>
 <body>
   <app-root>Loading...</app-root>
