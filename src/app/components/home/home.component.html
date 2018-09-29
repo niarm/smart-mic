@@ -1,5 +1,15 @@
 <div class="container">
-  <h1 class="title">
-    {{ 'PAGES.HOME.TITLE' | translate }}
-  </h1>
+  <h3 class="subtitle">{{subtitle}}</h3>
+  <div class="menu">
+    <button type="button" (click)="moveRight(steps)">Right</button>
+    <button type="button" (click)="moveLeft(steps)">Left</button>
+    <button type="button" (click)="moveUp(steps)">Up</button>
+    <button type="button" (click)="moveDown(steps)">Down</button>
+    <input type="text" name="steps" [(ngModel)]="stepsToMoveInputValue">
+  </div>
+
+
 </div>
+
+<video #camera autoplay> </video>
+<canvas #myCanvas width="640" height="480"></canvas>

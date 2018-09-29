@@ -1,6 +1,4 @@
 import {Board, Led, Stepper} from 'johnny-five';
-import ReadableStream = NodeJS.ReadableStream;
-import {Readable} from 'stream';
 import {Injectable} from '@angular/core';
 
 @Injectable()
